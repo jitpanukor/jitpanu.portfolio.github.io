@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Jitpanu Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Jitpanu Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Home page</a></li>
+							<li><a href="Patient Satisfaction.html">Projects</a></li>
+							<li><a href="about_me.html">About Me</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/jitpanu-kor/" target="_blank" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+							<li><a href="https://github.com/KengJPN" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header>
+									<h2>Coronavirus (COVID-19) World Exploration</h2>
+									<blockquote>This dashboard provides an interactive and comprehensive overview of the global impact of the COVID-19 pandemic.
+										By integrating real-time and historical data, it allows users to explore key metrics and trends at a global, regional, and country level.
+									</blockquote>
+								</header>
+								<div class="image fit"><img src="images/Covid Dashboard.JPG" alt="" /></div>
+								<p><a href="https://public.tableau.com/views/Covid2020_17290758846170/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank">See full dashboard</a></p>
+								<hr />
+								<header>
+									<h3>Summary</h3>
+								</header>
+									<p>This tool is designed to help policymakers, researchers, and the public gain a better understanding of the pandemic's progression and its impacts. 
+										By providing easy access to visualized data, it supports informed decision-making and awareness.</p>
+								
+								
+								Database from <a href="https://ourworldindata.org/covid-deaths" target="_blank">Our World in Data</a></p>		
+								
+								<hr />
+
+								<h3>Example Data cleaning</h3>
+									<pre><code>-- Create Temp table
+DROP TEMPORARY TABLE IF EXISTS PercentagePopulationVacinated;
+CREATE TEMPORARY TABLE PercentagePopulationVacinated
+(
+	Continent nvarchar(255),
+	Location nvarchar(255),
+	Date datetime,
+	Population numeric,
+	New_vaccinations numeric,
+	Rolling_vaccination numeric
+);
+										
+INSERT INTO PercentagePopulationVacinated
+SELECT	dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations,
+		SUM(vac.new_vaccinations) OVER (PARTITION BY dea.location ORDER BY dea.location, dea.date) AS rolling_vaccination
+FROM coviddeaths dea
+JOIN covidvaccinations vac
+	ON dea.location = vac.location
+	AND dea.date = vac.date
+WHERE dea.continent != '';
+</code></pre>
+
+								<hr />
+								
+								See the associated <a href="https://github.com/jitpanukor/Covid-19-Exploration-Analysis"  target="_blank">github repository</a> for more information and source code of the project.
+
+								</p>
+
+							</section>
+							
+							<div class="row">
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="Patient Satisfaction.html" class="button fit">Back</a></li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="Movies.html" class="button fit">Next</a></li>
+									</ul>
+								</div>
+							</div>	
+					</div>
+
+				<!-- Footer -->
+				<footer id="footer">
+					<section class="split contact">
+						<section class="alt">
+							<h3>Address</h3>
+							<p>Pracha Uthit Rd., Bang Mod, Thung Khru,<br />
+								Bangkok 10140, Thailand</p>
+						</section>
+						<section>
+							<h3>Phone</h3>
+							<p>(+66)65-645-8332</p>
+						</section>
+						<section>
+							<h3>Email</h3>
+							<p>jitpanu.kor@gmail.com</p>
+						</section>
+						<section>
+							<h3>Social</h3>
+							<ul class="icons alt">
+								<li><a href="https://www.linkedin.com/in/jitpanu-kor/"  target="_blank" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+									<li><a href="https://github.com/jitpanukor"  target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+							</ul>
+						</section>
+					</section>
+				</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

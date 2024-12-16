@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Jitpanu Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Jitpanu Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Home page</a></li>
+							<li class="active"><a href="projects.html">Projects</a></li>
+							<li><a href="about_me.html">About Me</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/jitpanu-kocharoenwat-278b92265/" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+							<li><a href="https://github.com/KengJPN" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header>
+									<h2>Nashville Housing Data Cleaning Project</h2>
+									<blockquote>This project we clean data and build Tableau dashboard that looks at how satisfied patients are with their hospitals in the United States.
+									This comes from a public dataset called HCAHPS that looks at over 3000 hospitals in the United States.
+									</blockquote>
+								</header>
+								<div class="image fit"><img src="images/Patient Satisfaction Dashboard.JPG" alt="" /></div>
+								<p><a href="https://public.tableau.com/views/DashBoard_17320218008620/HCAHPSDashBoard?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link">See full dashboard</a></p>
+								<hr />
+								<header>
+									<h3>Summary</h3>
+									<p>The dashboard evaluates hospital performance based on patient satisfaction. Key points include:</p>
+								</header>
+								
+								<p>
+									<div class="row">
+										<ul>
+											<li><b>Hospital rating:</b> Hospitals are ranked by the percentage of patients rating score 9 or 10.</li>
+											<li><b>Question Delta from Mean Cohort:</b> Highlights areas where a hospital's performance is above or below the average for similar hospitals.</li>
+											<li><b>Cohort Hospital Delta Spread:</b> Visualizes how hospital differ from the other hospitals across survey items.</li>
+										</ul>
+									</div>	
+								Database from <a href="https://data.cms.gov/">Center for Medicare & Medicaid Services (CMS)</a></p>		
+								
+								<hr />
+
+								<h3>Example Data cleaning</h3>
+									<pre><code>-- Change Y and N to Yes and No in "Sold as Vacant" field
+SELECT 
+	DISTINCT(SoldAsVacant), 
+	COUNT(SoldAsVacant)
+FROM PortfolioProject.dbo.NashvilleHousing
+GROUP BY SoldAsVacant
+ORDER BY 2
+																				
+SELECT SoldAsVacant,
+	CASE 
+		WHEN SoldAsVacant = 'Y' THEN 'YES'
+		WHEN SoldAsVacant = 'N' THEN 'No'
+		ELSE SoldAsVacant
+	END
+FROM PortfolioProject.dbo.NashvilleHousing
+										
+UPDATE PortfolioProject.dbo.NashvilleHousing
+SET SoldAsVacant = 	
+	CASE 
+		WHEN SoldAsVacant = 'Y' THEN 'YES'
+		WHEN SoldAsVacant = 'N' THEN 'No'
+		ELSE SoldAsVacant
+	END
+FROM PortfolioProject.dbo.NashvilleHousing
+										
+</code></pre>
+
+								<hr />
+
+								See the associated <a href="https://github.com/KengJPN/Porfolio-Projects/blob/main/Nashville%20Housing%20Data%20Cleaning%20Project%20Walk%20Through.sql">github repository</a> for more information and source code of the project.
+
+								</p>
+
+							</section>
+
+							<div class="row">
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="Covid.html" class="button fit">Back</a></li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="Covid.html" class="button fit">Next</a></li>
+									</ul>
+								</div>
+							</div>	
+
+					</div>
+
+				<!-- Footer -->
+				<footer id="footer">
+					<section class="split contact">
+						<section class="alt">
+							<h3>Address</h3>
+							<p>Pracha Uthit Rd., Bang Mod, Thung Khru,<br />
+								Bangkok 10140, Thailand</p>
+						</section>
+						<section>
+							<h3>Phone</h3>
+							<p>(+66)65-645-8332</p>
+						</section>
+						<section>
+							<h3>Email</h3>
+							<p>jitpanu.kor@gmail.com</p>
+						</section>
+						<section>
+							<h3>Social</h3>
+							<ul class="icons alt">
+								<li><a href="https://www.linkedin.com/in/jitpanu-kocharoenwat-278b92265/" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+								<li><a href="https://github.com/KengJPN" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+							</ul>
+						</section>
+					</section>
+				</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
